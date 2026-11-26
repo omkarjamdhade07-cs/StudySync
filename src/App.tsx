@@ -37,7 +37,6 @@ function AppRoutes() {
     <Routes>
       <Route path="/"           element={user ? <Navigate to="/today" replace /> : <LandingPage />} />
       <Route path="/auth"       element={user ? <Navigate to="/today" replace /> : <AuthPage />} />
-      <Route path="/demo"       element={<TodayPage />} />
       <Route path="/today"      element={<ProtectedRoute><TodayPage /></ProtectedRoute>} />
       <Route path="/plan"       element={<ProtectedRoute><WeeklyPlanPage /></ProtectedRoute>} />
       <Route path="/progress"   element={<ProtectedRoute><ProgressPage /></ProtectedRoute>} />

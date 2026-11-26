@@ -31,9 +31,6 @@ export default function LandingPage() {
             Get Started
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-          <Link to="/demo" className="btn-brutal btn-secondary text-base px-8 py-3 min-h-[52px]">
-            Try Demo
-          </Link>
         </div>
 
         <p className="text-xs text-ink/50 animate-fade-rise">
