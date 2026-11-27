@@ -1,5 +1,6 @@
 import { Check, X, CalendarClock, BookOpen, Lock, RotateCcw, Trash2 } from 'lucide-react'
 import WhyThisPopover from './WhyThisPopover'
+import Stopwatch from './Stopwatch'
 
 export interface TaskCardData {
   id: string
@@ -107,42 +108,43 @@ export default function TaskCard({
 
         {/* ── Action row for PLANNED tasks ── */}
         {isPlanned && (
-          <div className="flex items-center justify-between mt-3 gap-2 flex-wrap">
-            <div className="flex items-center gap-2 flex-wrap">
-              {/* ✓ Done */}
-              <button
-                onClick={() => onDone?.(task.id)}
-                disabled={isDisabled}
-                className="btn-brutal btn-done text-xs px-3 min-h-[36px]"
-                aria-label={`Mark ${task.topicName} as done`}
-              >
-                <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                Done
-              </button>
+          <div className="mt-3 space-y-3">
+            {/* Stopwatch */}
+            <Stopwatch taskId={task.id} targetMinutes={task.durationMinutes} />
 
-              {/* ✗ Not Done / Missed */}
-              <button
-                onClick={() => onMissed?.(task.id)}
-                disabled={isDisabled}
-                className="btn-brutal btn-missed text-xs px-3 min-h-[36px]"
-                aria-label={`Mark ${task.topicName} as missed`}
-              >
-                <X className="h-3.5 w-3.5" aria-hidden="true" />
-                Not Done
-              </button>
-
-              {/* Reschedule */}
-              <button
-                onClick={() => onReschedule?.(task.id)}
-                disabled={isDisabled}
-                className="btn-brutal btn-secondary text-xs px-3 min-h-[36px]"
-                aria-label={`Reschedule ${task.topicName}`}
-              >
-                <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />
-                Reschedule
-              </button>
+            {/* Buttons row */}
+            <div className="flex items-center justify-between gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => onDone?.(task.id)}
+                  disabled={isDisabled}
+                  className="btn-brutal btn-done text-xs px-3 min-h-[36px]"
+                  aria-label={`Mark ${task.topicName} as done`}
+                >
+                  <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                  Done
+                </button>
+                <button
+                  onClick={() => onMissed?.(task.id)}
+                  disabled={isDisabled}
+                  className="btn-brutal btn-missed text-xs px-3 min-h-[36px]"
+                  aria-label={`Mark ${task.topicName} as missed`}
+                >
+                  <X className="h-3.5 w-3.5" aria-hidden="true" />
+                  Not Done
+                </button>
+                <button
+                  onClick={() => onReschedule?.(task.id)}
+                  disabled={isDisabled}
+                  className="btn-brutal btn-secondary text-xs px-3 min-h-[36px]"
+                  aria-label={`Reschedule ${task.topicName}`}
+                >
+                  <CalendarClock className="h-3.5 w-3.5" aria-hidden="true" />
+                  Reschedule
+                </button>
+              </div>
+              <WhyThisPopover reasons={task.reasons} />
             </div>
-            <WhyThisPopover reasons={task.reasons} />
           </div>
         )}
 
